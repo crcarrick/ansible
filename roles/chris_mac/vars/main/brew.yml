@@ -1,0 +1,27 @@
+homebrew_casks:
+  - bitwarden
+  - discord
+  - iterm2
+  - kindle
+  - microsoft-edge
+  - notion
+  - raycast
+  - slack
+  - visual-studio-code
+  - zoom
+
+homebrew_formulae:
+  - bitwarden-cli
+  - dockutil
+  - git
+  - gh
+  - go
+  - lesspipe
+  - mas
+  - nvm
+  - pyenv
+  - sqlite
+  - watchman
+  - zsh-completions
+  - zsh-autosuggestions
+  - zsh-syntax-highlighting

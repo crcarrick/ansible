@@ -1,0 +1,49 @@
+# git
+alias gl="g log"
+alias gaa="g add --all && g status"
+alias gpu="g push -u origin HEAD"
+alias grs="g reset --soft HEAD~1"
+alias grh="g reset --hard HEAD~1 && g status"
+alias gst="g stash && g pull && g stash pop"
+
+alias gcm="g commit -m"
+compdef _git gcm=git-commit
+alias gdc="g diff --cached"
+compdef _git gdc=git-diff
+alias gls="g log --stat"
+compdef _git gl=git-log
+
+alias grim="g rebase --interactive main"
+alias pull="g pull"
+alias push="g push"
+alias pushpr="g push && gh pr create --web"
+
+# less
+export LESS_TERMCAP_mb=$'\E[01;31m'      # begins blinking
+export LESS_TERMCAP_md=$'\E[01;31m'      # begins bold
+export LESS_TERMCAP_me=$'\E[0m'          # ends mode
+export LESS_TERMCAP_se=$'\E[0m'          # ends standout-mode
+export LESS_TERMCAP_so=$'\E[00;47;30m'   # begins standout-mode
+export LESS_TERMCAP_ue=$'\E[0m'          # ends underline
+export LESS_TERMCAP_us=$'\E[01;32m'      # begins underline
+
+# macos
+alias o="open"
+alias pbp="pbpaste"
+
+# posix
+alias cp="cp -i"
+alias ln="ln -i"
+alias mv="mv -i"
+
+# rm
+alias rm="trash"
+alias rrm="/bin/rm -i"
+
+# python
+alias pip="python -m pip"
+alias pipi="pip install"
+alias pipir="pip install -r requirements.txt"
+
+# node
+alias pn="pnpm"

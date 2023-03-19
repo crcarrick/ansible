@@ -1,0 +1,12 @@
+---
+- hosts: localhost
+  connection: local
+  tasks:
+    - debug:
+        msg: Check we are running in the directory of the script
+      failed_when: not lookup('env', 'PWD').endswith('/ansible')
+
+- hosts: localhost
+  connection: local
+  roles:
+    - chris_mac

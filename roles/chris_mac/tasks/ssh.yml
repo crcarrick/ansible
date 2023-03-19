@@ -1,0 +1,28 @@
+- name: Get SSH Directory
+  stat:
+    path: "{{ lookup('env', 'HOME') }}/.ssh"
+  register: ssh_dir
+
+- name: Ensure ssh directory
+  when: not ssh_dir.stat.exists
+  file:
+    path: "{{ lookup('env', 'HOME') }}/.ssh"
+    state: directory
+
+- name: Install ssh config
+  copy:
+    content: "{{ ssh_config }}"
+    dest: "{{ lookup('env', 'HOME') }}/.ssh/config"
+
+- name: Install keys key
+  copy:
+    content: "{{ id_rsa }}"
+    dest: "{{ lookup('env', 'HOME') }}/.ssh/id_rsa"
+
+- name: Install ssh key pub
+  copy:
+    content: "{{ id_rsa_pub }}"
+    dest: "{{ lookup('env', 'HOME') }}/.ssh/id_rsa.pub"
+
+- name: Run ssh-add
+  shell: ssh-add --apple-use-keychain ~/.ssh/id_rsa

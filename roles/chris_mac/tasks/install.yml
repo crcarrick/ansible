@@ -1,0 +1,110 @@
+- name: Update homebrew
+  homebrew:
+    name: git
+    state: latest
+    update_homebrew: true
+  tags:
+    - homebrew
+
+- name: Install homebrew casks
+  command: brew install {{ homebrew_casks|join(" ") }}
+  tags:
+    - homebrew
+
+- name: Install homebrew formulae
+  homebrew:
+    name: "{{ homebrew_formulae }}"
+    state: latest
+  tags:
+    - homebrew
+
+- name: Install asdf
+  git:
+    repo: git@github.com:asdf-vm/asdf.git
+    dest: "{{ lookup('env', 'HOME') }}/.asdf"
+    key_file: "{{ lookup('env', 'HOME') }}/.ssh/id_rsa"
+    accept_hostkey: yes
+  tags:
+    - asdf
+
+- name: Install asdf plugins
+  shell: |
+    source {{ lookup('env', 'HOME') }}/.asdf/asdf.sh
+    asdf plugin add {{ item }} || exit 0
+  with_items:
+    - nodejs
+    - python
+  tags:
+    - asdf
+
+- name: Setup asdf plugins
+  shell: |
+    source {{ lookup('env', 'HOME') }}/.asdf/asdf.sh
+    asdf install {{ item.name }} {{ item.version }}
+    asdf global {{ item.name }} {{ item.version }}
+    asdf reshim {{ item.name }}
+  with_items:
+    - name: nodejs
+      version: 16.17.0
+    - name: python
+      version: 3.10.0
+  tags:
+    - asdf
+
+- name: Install rust
+  shell: |
+    curl https://sh.rustup.rs -sSf | sh -s -- -y
+    rustup toolchain install nightly
+    rustup default nightly
+  tags:
+    - rust
+
+- name: Enable corepack
+  shell: corepack enable
+  tags:
+    - nodejs
+
+- name: Install oh-my-zsh
+  shell: sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+  args:
+    creates: "{{ lookup('env', 'HOME') }}/.oh-my-zsh"
+  tags:
+    - zsh
+
+- name: Install p10k
+  git:
+    repo: git@github.com:romkatv/powerlevel10k.git
+    dest: "{{ lookup('env', 'HOME') }}/.oh-my-zsh/custom/themes/powerlevel10k"
+    key_file: "{{ lookup('env', 'HOME') }}/.ssh/id_rsa"
+    accept_hostkey: yes
+    depth: 1
+  tags:
+    - zsh
+
+- name: Install Codex CLI
+  git:
+    repo: git@github.com:microsoft/Codex-CLI.git
+    dest: "{{ lookup('env', 'HOME') }}/.codex-cli"
+    key_file: "{{ lookup('env', 'HOME') }}/.ssh/id_rsa"
+    accept_hostkey: yes
+  tags:
+    - ai
+
+- name: Install Codex CLI dependencies
+  shell: |
+    cd {{ lookup('env', 'HOME') }}/.codex-cli
+    python -m pip install -r requirements.txt
+    asdf reshim python
+  tags:
+    - ai
+
+- name: Setup Codex CLI
+  shell: |
+    cd {{ lookup('env', 'HOME') }}/.codex-cli
+    echo "[openai]" > src/openaiapirc
+    echo "organization_id={{ openai_api_org }}" >> src/openaiapirc
+    echo "secret_key={{ openai_api_key }}" >> src/openaiapirc
+    echo "engine={{ openai_api_model }}" >> src/openaiapirc
+    chmod +x src/codex_query.py
+  tags:
+    - ai
