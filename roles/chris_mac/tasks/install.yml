@@ -81,30 +81,11 @@
   tags:
     - zsh
 
-- name: Install Codex CLI
-  git:
-    repo: git@github.com:microsoft/Codex-CLI.git
-    dest: "{{ lookup('env', 'HOME') }}/.codex-cli"
-    key_file: "{{ lookup('env', 'HOME') }}/.ssh/id_rsa"
-    accept_hostkey: yes
-  tags:
-    - ai
-
-- name: Install Codex CLI dependencies
+- name: Install shell gpt
   shell: |
-    cd {{ lookup('env', 'HOME') }}/.codex-cli
-    python -m pip install -r requirements.txt
+    source {{ lookup('env', 'HOME') }}/.asdf/asdf.sh
+    pip install shell-gpt
+    echo "OPENAI_API_KEY={{ openai_api_key }}" >> {{ lookup('env', 'HOME') }}/.config/shell_gpt/.sgptrc
     asdf reshim python
-  tags:
-    - ai
-
-- name: Setup Codex CLI
-  shell: |
-    cd {{ lookup('env', 'HOME') }}/.codex-cli
-    echo "[openai]" > src/openaiapirc
-    echo "organization_id={{ openai_api_org }}" >> src/openaiapirc
-    echo "secret_key={{ openai_api_key }}" >> src/openaiapirc
-    echo "engine={{ openai_api_model }}" >> src/openaiapirc
-    chmod +x src/codex_query.py
   tags:
     - ai
