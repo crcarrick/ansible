@@ -21,3 +21,8 @@ function trash() {
   done
   IFS=$temp_ifs
 }
+
+# interactive git checkout
+checkout() {
+  git checkout $(git branch --sort=-committerdate | fzf | xargs)
+}

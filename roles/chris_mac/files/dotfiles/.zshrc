@@ -47,7 +47,7 @@ compinit -u
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR=nano
 else
-  export EDITOR='code --wait'
+  export EDITOR=vi
 fi
 
 # custom functions & aliases
@@ -58,10 +58,20 @@ source $HOME/.zsh_aliases
 source $HOME/.zsh_extra
 
 # configure less
-export LESS='--chop-long-lines --HILITE-UNREAD --ignore-case --incsearch --jump-target=4 --LONG-PROMPT --no-init --quit-if-one-screen --RAW-CONTROL-CHARS --status-line --use-color --window=-4'
+export LESS='--chop-long-lines --HILITE-UNREAD --ignore-case --incsearch --jump-target=4 --LONG-PROMPT --no-init --quit-if-one-screen --RAW-CONTROL-CHARS --use-color --window=-4'
 if (( $#commands[(i)lesspipe(|.sh)] )); then
   export LESSOPEN="| /usr/bin/env $commands[(i)lesspipe(|.sh)] %s 2>&-"
 fi
+
+export LESS_TERMCAP_mb=$'\E[01;31m'      # begins blinking
+export LESS_TERMCAP_md=$'\E[01;31m'      # begins bold
+export LESS_TERMCAP_me=$'\E[0m'          # ends mode
+export LESS_TERMCAP_se=$'\E[0m'          # ends standout-mode
+export LESS_TERMCAP_so=$'\E[00;47;30m'   # begins standout-mode
+export LESS_TERMCAP_ue=$'\E[0m'          # ends underline
+export LESS_TERMCAP_us=$'\E[01;32m'      # begins underline
+
+export PAGER=less
 
 # extend path
 export PATH=$HOME/.cargo/bin:$PATH
@@ -70,7 +80,9 @@ export PATH=$HOME/.cargo/bin:$PATH
 source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh  # must be first
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-# codex cli
-export CODEX_CLI_PATH=$HOME/.codex-cli
-source "$CODEX_CLI_PATH/scripts/zsh_plugin.zsh"
-bindkey '^G' create_completion
+# fuzzy finder
+if [[ ! "$PATH" == */usr/local/opt/fzf/bin* ]]; then
+  PATH="${PATH:+${PATH}:}/usr/local/opt/fzf/bin"
+fi
+
+[[ $- == *i* ]] && source "/usr/local/opt/fzf/shell/completion.zsh" 2> /dev/null
