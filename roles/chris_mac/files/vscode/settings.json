@@ -1,4 +1,5 @@
 {
+  "css.lint.unknownAtRules": "ignore",
   "diffEditor.ignoreTrimWhitespace": false,
   "editor.fontFamily": "'Operator Mono', Menlo, Monaco, 'Courier New', monospace",
   "editor.fontWeight": 500,
@@ -8,6 +9,11 @@
   "editor.formatOnSave": true,
   "editor.inlineSuggest.enabled": true,
   "editor.bracketPairColorization.enabled": true,
+  "editor.quickSuggestions": {
+    "comments": "off",
+    "other": "on",
+    "strings": "on"
+  },
   "emmet.includeLanguages": {
     "javascript": "javascriptreact",
     "typescript": "typescriptreact"
@@ -24,7 +30,26 @@
   "isort.args": ["--profile", "black"],
   "jest.autoRun": "off",
   "jest.jestCommandLine": "yarn test",
+  "redhat.telemetry.enabled": false,
+  "search.exclude": {
+    "**/.yarn": true,
+    "**/.pnp.*": true,
+    "**/.next": true,
+    "**/node_modules": true
+  },
   "security.workspace.trust.untrustedFiles": "open",
+  "tailwindCSS.experimental.classRegex": [
+    ["cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"],
+    ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"]
+  ],
+  "tailwindCSS.includeLanguages": {
+    "css": "css",
+    "html": "html",
+    "javascript": "javascript",
+    "javascriptreact": "javascriptreact",
+    "typescript": "typescript",
+    "typescriptreact": "typescriptreact"
+  },
   "terminal.integrated.fontFamily": "'MesloLGS NF'",
   "terminal.integrated.fontSize": 16,
   "terminal.integrated.letterSpacing": 1,
@@ -32,6 +57,9 @@
   "typescript.updateImportsOnFileMove.enabled": "always",
   "workbench.colorTheme": "Dracula",
   "workbench.iconTheme": "material-icon-theme",
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },

@@ -11,10 +11,12 @@ vscode_extensions:
   - fauna.fauna
   - formulahendry.auto-rename-tag
   - github.copilot
+  - github.vscode-pull-request-github
   - golang.go
   - GraphQL.vscode-graphql
   - GraphQL.vscode-graphql-syntax
   - Kasik96.swift
+  - lanza.lldb-vscode
   - ms-python.isort
   - ms-python.python
   - ms-python.vscode-pylance
