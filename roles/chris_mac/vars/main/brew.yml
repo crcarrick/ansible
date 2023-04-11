@@ -11,18 +11,26 @@ homebrew_casks:
   - zoom
 
 homebrew_formulae:
+  - bat
   - bitwarden-cli
+  - caddy
   - dockutil
+  - exa
   - fzf
   - git
   - gh
   - go
+  - lazydocker
+  - lazygit
   - lesspipe
   - mas
+  - mycli
   - nvm
+  - pgcli
   - pyenv
   - sqlite
   - watchman
+  - yank
   - zsh-completions
   - zsh-autosuggestions
   - zsh-syntax-highlighting

@@ -26,6 +26,8 @@ alias pbp="pbpaste"
 alias cp="cp -i"
 alias ln="ln -i"
 alias mv="mv -i"
+alias ls="exa"
+alias cat="bat"
 
 # rm
 alias rm="trash"
@@ -38,3 +40,7 @@ alias pipir="pip install -r requirements.txt"
 
 # node
 alias pn="pnpm"
+
+# lazy
+alias lzd="lazydocker"
+alias lzg="lazygit"

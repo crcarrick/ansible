@@ -25,6 +25,22 @@
     "markdown": false,
     "rust": true
   },
+  "githubPullRequests.commentExpandState": "expandUnresolved",
+  "githubPullRequests.notifications": "pullRequests",
+  "githubPullRequests.queries": [
+    {
+      "label": "Todo",
+      "query": "is:open review-requested:${user}"
+    },
+    {
+      "label": "Mine",
+      "query": "is:open author:${user}"
+    },
+    {
+      "label": "Mentioned",
+      "query": "is:open mentions:${user}"
+    }
+  ],
   "gitlens.advanced.blame.sizeThresholdAfterEdit": 0,
   "gitlens.advanced.blame.delayAfterEdit": 15000,
   "isort.args": ["--profile", "black"],
