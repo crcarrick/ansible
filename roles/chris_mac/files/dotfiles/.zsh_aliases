@@ -28,6 +28,7 @@ alias ln="ln -i"
 alias mv="mv -i"
 alias ls="exa"
 alias cat="bat"
+alias back="cd -"
 
 # rm
 alias rm="trash"
