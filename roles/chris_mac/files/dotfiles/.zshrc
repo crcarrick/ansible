@@ -74,7 +74,10 @@ export LESS_TERMCAP_us=$'\E[01;32m'      # begins underline
 export PAGER=less
 
 # extend path
+export PNPM_HOME="$HOME/Library/pnpm"
+
 export PATH=$HOME/.cargo/bin:$PATH
+export PATH=$PNPM_HOME:$PATH
 
 # plugins from homebrew
 source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh  # must be first
@@ -86,3 +89,6 @@ if [[ ! "$PATH" == */usr/local/opt/fzf/bin* ]]; then
 fi
 
 [[ $- == *i* ]] && source "/usr/local/opt/fzf/shell/completion.zsh" 2> /dev/null
+
+# pnpm
+# pnpm end

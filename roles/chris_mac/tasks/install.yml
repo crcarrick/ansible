@@ -45,7 +45,7 @@
     asdf reshim {{ item.name }}
   with_items:
     - name: nodejs
-      version: 16.17.0
+      version: latest
     - name: python
       version: 3.10.0
   tags:
@@ -89,3 +89,30 @@
     asdf reshim python
   tags:
     - ai
+
+- name: Install Copilot CLI
+  shell: |
+    source {{ lookup('env', 'HOME') }}./asdf/asdf.sh
+    pnpm add -g @githubnext/github-copilot-cli
+    asdf reshim nodejs
+  tags:
+    - ai
+
+- name: Authenticate with Github CLIs
+  copy:
+    content: "{{ item.text }}"
+    dest: "{{ lookup('env', 'HOME') }}/{{ item.file }}"
+  with_items:
+    - file: .copilot-cli-access-token
+      text: "{{ copilot_cli_access_token }}"
+    - file: .copilot-cli-copilot-token
+      text: "{{ copilot_cli_copilot_token }}"
+    - file: .config/gh/hosts.yml
+      text: |
+        github.com:
+            oauth_token: {{ github_cli_token }}
+            user: crcarrick
+            git_protocol: ssh
+  tags:
+    - ai
+    - github
