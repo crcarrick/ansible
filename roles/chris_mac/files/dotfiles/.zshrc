@@ -77,6 +77,7 @@ export PAGER=less
 export PNPM_HOME="$HOME/Library/pnpm"
 
 export PATH=$HOME/.cargo/bin:$PATH
+export PATH=$HOME/.docker/bin:$PATH
 export PATH=$PNPM_HOME:$PATH
 
 # plugins from homebrew

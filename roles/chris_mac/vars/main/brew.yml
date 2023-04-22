@@ -1,6 +1,7 @@
 homebrew_casks:
   - bitwarden
   - discord
+  - docker
   - iterm2
   - kindle
   - microsoft-edge
@@ -12,13 +13,17 @@ homebrew_casks:
   - zoom
 
 homebrew_formulae:
+  - awscli
   - bat
   - bitwarden-cli
   - caddy
+  - direnv
   - dockutil
   - exa
+  - ffmpeg
   - fzf
   - git
+  - git-lfs
   - gh
   - go
   - lazydocker
@@ -29,6 +34,7 @@ homebrew_formulae:
   - nvm
   - pgcli
   - pyenv
+  - redis
   - sqlite
   - watchman
   - yank

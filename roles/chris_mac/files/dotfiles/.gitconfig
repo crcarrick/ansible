@@ -3,3 +3,5 @@
         email = chris@crcarrick.dev
 [init]
 	defaultBranch = main
+[safe]
+	directory = /Applications/World of Warcraft/_retail_

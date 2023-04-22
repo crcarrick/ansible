@@ -1,6 +1,6 @@
 # brew
 if [[ $(uname -m) == 'arm64' ]]; then
-  # m1
+  # apple silicon
   eval "$(/opt/homebrew/bin/brew shellenv)"
 else
   # intel
@@ -9,6 +9,13 @@ fi
 
 
 # pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init --path)"
+if command -v pyenv 1>/dev/null 2>&1; then
+  export PYENV_ROOT="$HOME/.pyenv"
+  export PATH="$PYENV_ROOT/bin:$PATH"
+  eval "$(pyenv init --path)"
+fi
+
+# direnv
+if command -v direnv 1>/dev/null 2>&1; then
+  eval "$(direnv hook zsh)"
+fi

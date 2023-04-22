@@ -17,15 +17,18 @@ vscode_extensions:
   - GraphQL.vscode-graphql-syntax
   - Kasik96.swift
   - lanza.lldb-vscode
+  - ms-python.flake8
   - ms-python.isort
   - ms-python.python
   - ms-python.vscode-pylance
   - Orta.vscode-jest
   - Orta.vscode-twoslash-queries
   - PKief.material-icon-theme
+  - rangav.vscode-thunder-client
   - redhat.vscode-xml
   - rust-lang.rust-analyzer
   - styled-components.vscode-styled-components
   - unifiedjs.vscode-mdx
   - wayou.vscode-todo-highlight
   - xyc.vscode-mdx-preview
+  - yoavbls.pretty-ts-errors
