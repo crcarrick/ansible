@@ -5,7 +5,6 @@
     state: link
     force: true
   with_items:
-    - .asdfrc
     - .gitconfig
     - .p10k.zsh
     - .zprofile

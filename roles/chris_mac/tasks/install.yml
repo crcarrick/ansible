@@ -27,6 +27,14 @@
     creates: "{{ lookup('env', 'HOME') }}/.nvm/nvm.sh"
   tags: nodejs
 
+- name: Enable corepack
+  shell: |
+    corepack enable
+    corepack enable pnpm
+    corepack use pnpm@latest
+  tags:
+    - nodejs
+
 - name: Install rust
   shell: |
     curl https://sh.rustup.rs -sSf | sh -s -- -y
@@ -34,11 +42,6 @@
     rustup default nightly
   tags:
     - rust
-
-- name: Enable corepack
-  shell: corepack enable
-  tags:
-    - nodejs
 
 - name: Install oh-my-zsh
   shell: sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
@@ -59,9 +62,7 @@
 
 - name: Install Copilot CLI
   shell: |
-    source {{ lookup('env', 'HOME') }}./asdf/asdf.sh
     pnpm add -g @githubnext/github-copilot-cli
-    asdf reshim nodejs
   tags:
     - ai
 
