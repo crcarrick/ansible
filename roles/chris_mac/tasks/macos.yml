@@ -12,6 +12,7 @@
     - /Applications/Slack.app
     - /Applications/Calendar.app
     - /Applications/Visual\ Studio\ Code.app
+    - /Applications/Visual\ Studio\ Code\ -\ Insiders.app
     - /Applications/Obsidian.app
   tags:
     - dock
