@@ -1,0 +1,60 @@
+- name: Setup iTerm settings
+  osx_defaults:
+    domain: com.googlecode.iterm2
+    key: PrefsCustomFolder
+    type: string
+    value: "{{ lookup('env', 'PWD') }}/roles/chris_mac/files"
+  tags:
+    - iTerm
+
+- name: Ensure VSCode settings directory
+  file:
+    path: "{{ lookup('env', 'HOME') }}/Library/Application Support/Code/User"
+    state: directory
+  tags:
+    - vscode
+
+- name: Ensure VSCode - Insiders settings directory
+  file:
+    path: "{{ lookup('env', 'HOME') }}/Library/Application Support/Code - Insiders/User"
+    state: directory
+  tags:
+    - vscode
+    - insiders
+
+- name: Copy VSCode settings and keybindings
+  file:
+    src: "{{ lookup('env', 'PWD') }}/roles/chris_mac/files/vscode/{{ item }}"
+    dest: "{{ lookup('env', 'HOME') }}/Library/Application Support/Code/User/{{ item }}"
+    state: link
+  with_items:
+    - settings.json
+    - keybindings.json
+  tags:
+    - vscode
+
+- name: Copy VSCode - Insiders settings and keybindings
+  file:
+    src: "{{ lookup('env', 'PWD') }}/roles/chris_mac/files/vscode/{{ item }}"
+    dest: "{{ lookup('env', 'HOME') }}/Library/Application Support/Code - Insiders/User/{{ item }}"
+    state: link
+  with_items:
+    - settings.json
+    - keybindings.json
+  tags:
+    - vscode
+    - insiders
+
+- name: Install VSCode extensions
+  shell: codes --install-extension {{ item }} || exit 0
+  with_items: "{{ vscode_extensions }}"
+  tags:
+    - vscode
+
+- name: Install VSCode extensions - Insiders
+  shell: code-insiders --install-extension {{ item }} || exit 0
+  with_items: "{{ vscode_extensions }}"
+  tags:
+    - vscode
+    - insiders
+

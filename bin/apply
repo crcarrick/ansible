@@ -1,0 +1,19 @@
+#!/usr/bin/env zsh
+
+zmodload zsh/zutil
+zparseopts -A ARGUMENTS -playbook: -tags:
+
+playbook=$ARGUMENTS[--playbook]
+tags=$ARGUMENTS[--tags]
+
+ansible-galaxy install -r requirements.yml
+
+if [[ -z $playbook ]]; then
+  playbook=personal.yml
+fi
+
+if [[ -n $tags ]]; then
+  ansible-playbook -i "localhost," -c local $playbook --ask-pass --ask-become-pass --ask-vault-pass --tags $tags
+else
+  ansible-playbook -i "localhost," -c local $playbook --ask-pass --ask-become-pass --ask-vault-pass
+fi

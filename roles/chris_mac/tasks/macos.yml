@@ -1,0 +1,30 @@
+- name: Remove all dock items
+  shell: /usr/local/bin/dockutil --remove all
+  tags:
+    - dock
+
+- name: Set dock items
+  shell: /usr/local/bin/dockutil --add {{ item }}
+  with_items:
+    - /Applications/Microsoft\ Edge.app
+    - /Applications/Discord.app
+    - /Applications/iTerm.app
+    - /Applications/Slack.app
+    - /Applications/Calendar.app
+    - /Applications/Visual\ Studio\ Code.app
+    - /Applications/Obsidian.app
+  tags:
+    - dock
+
+- name: Install macos settings
+  shell: ". {{ lookup('env', 'PWD') }}/bin/macos"
+  tags:
+    - settings
+
+- name: Kill affected apps
+  shell: killall {{ item }}
+  with_items:
+    - Dock
+    - Finder
+  tags:
+    - settings

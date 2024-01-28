@@ -1,0 +1,51 @@
+# git
+alias gl="g log"
+alias gaa="g add --all && g status"
+alias gpu="g push -u origin HEAD"
+alias grs="g reset --soft HEAD~1"
+alias grh="g reset --hard HEAD~1 && g status"
+alias gst="g stash && g pull && g stash pop"
+
+alias gcm="g commit -m"
+compdef _git gcm=git-commit
+alias gdc="g diff --cached"
+compdef _git gdc=git-diff
+alias gls="g log --stat"
+compdef _git gl=git-log
+
+alias grim="g rebase --interactive main"
+alias pull="g pull"
+alias push="g push"
+alias pushpr="g push && gh pr create --web"
+
+# macos
+alias o="open"
+alias pbp="pbpaste"
+
+# posix
+alias cp="cp -i"
+alias ln="ln -i"
+alias mv="mv -i"
+alias ls="exa"
+alias cat="bat"
+alias back="cd -"
+
+# rm
+alias rm="trash"
+alias rrm="/bin/rm -i"
+
+# python
+alias pip="python -m pip"
+alias pipi="pip install"
+alias pipir="pip install -r requirements.txt"
+
+# node
+alias pn="pnpm"
+
+# lazy
+alias lzd="lazydocker"
+alias lzg="lazygit"
+
+# vscode
+alias codes="code"
+alias code="code-insiders"

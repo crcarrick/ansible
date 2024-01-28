@@ -1,0 +1,14 @@
+- name: Symlink dotfiles
+  file:
+    src: "{{ lookup('env', 'PWD') }}/roles/chris_mac/files/dotfiles/{{ item }}"
+    path: "{{ lookup('env', 'HOME') }}/{{ item }}"
+    state: link
+    force: true
+  with_items:
+    - .asdfrc
+    - .gitconfig
+    - .p10k.zsh
+    - .zprofile
+    - .zsh_aliases
+    - .zsh_funcs
+    - .zshrc

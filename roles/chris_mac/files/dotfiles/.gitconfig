@@ -1,0 +1,12 @@
+[user]
+	name = Chris Carrick
+	email = christopher.carrick@klaviyo.com
+[init]
+	defaultBranch = main
+[safe]
+	directory = /Applications/World of Warcraft/_retail_
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true

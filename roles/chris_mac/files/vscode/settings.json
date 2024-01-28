@@ -1,0 +1,120 @@
+{
+  "css.lint.unknownAtRules": "ignore",
+  "diffEditor.ignoreTrimWhitespace": false,
+  "editor.fontFamily": "'Operator Mono', Menlo, Monaco, 'Courier New', monospace",
+  "editor.fontWeight": 500,
+  "editor.fontSize": 18,
+  "editor.tabSize": 2,
+  "editor.wordWrap": "on",
+  "editor.formatOnSave": true,
+  "editor.inlineSuggest.enabled": true,
+  "editor.guides.bracketPairs": true,
+  "editor.bracketPairColorization.enabled": true,
+  "editor.quickSuggestions": {
+    "comments": "off",
+    "other": "on",
+    "strings": "on"
+  },
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact",
+    "typescript": "typescriptreact"
+  },
+  "github.copilot.enable": {
+    "*": true,
+    "yaml": false,
+    "plaintext": false,
+    "markdown": false,
+    "rust": true
+  },
+  "githubPullRequests.commentExpandState": "expandUnresolved",
+  "githubPullRequests.notifications": "pullRequests",
+  "githubPullRequests.queries": [
+    {
+      "label": "Todo",
+      "query": "is:open review-requested:${user}"
+    },
+    {
+      "label": "Mine",
+      "query": "is:open author:${user}"
+    },
+    {
+      "label": "Mentioned",
+      "query": "is:open mentions:${user}"
+    }
+  ],
+  "gitlens.advanced.blame.sizeThresholdAfterEdit": 0,
+  "gitlens.advanced.blame.delayAfterEdit": 15000,
+  "isort.args": ["--profile", "black"],
+  "jest.autoRun": "off",
+  "jest.jestCommandLine": "yarn test",
+  "redhat.telemetry.enabled": false,
+  "search.exclude": {
+    "**/.yarn": true,
+    "**/.pnp.*": true,
+    "**/.next": true,
+    "**/node_modules": true
+  },
+  "security.workspace.trust.untrustedFiles": "open",
+  "tailwindCSS.experimental.classRegex": [
+    ["cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"],
+    ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"]
+  ],
+  "tailwindCSS.includeLanguages": {
+    "css": "css",
+    "html": "html",
+    "javascript": "javascript",
+    "javascriptreact": "javascriptreact",
+    "typescript": "typescript",
+    "typescriptreact": "typescriptreact"
+  },
+  "terminal.integrated.fontFamily": "'MesloLGS NF'",
+  "terminal.integrated.fontSize": 16,
+  "terminal.integrated.letterSpacing": 1,
+  "terminal.integrated.cursorBlinking": true,
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "workbench.colorTheme": "Dracula",
+  "workbench.iconTheme": "material-icon-theme",
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.black-formatter",
+    "editor.formatOnType": false,
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": "explicit"
+    }
+  },
+  "githubPullRequests.pullBranch": "never",
+  "python.defaultInterpreterPath": "/Users/christopher.carrick/.pyenv/versions/3.10.9/envs/app",
+  "extensions.ignoreRecommendations": true,
+  "crcarrick.fsEventCmd": {
+    "commands": [
+      {
+        "glob": "**/*.ts(x)",
+        "type": ["create", "rename", "delete"],
+        "cmd": "typescript.restartTsServer"
+      }
+    ]
+  }
+}

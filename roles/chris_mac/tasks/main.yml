@@ -1,0 +1,29 @@
+- name: Setup ssh 🔑
+  import_tasks: ssh.yml
+  tags:
+    - ssh
+
+- name: Install stuff 📦
+  import_tasks: install.yml
+  tags:
+    - install
+
+- name: Configure OSX 🍎
+  import_tasks: macos.yml
+  tags:
+    - macos
+
+- name: Copy dotfiles 📁
+  import_tasks: dotfiles.yml
+  tags:
+    - dotfiles
+
+- name: Copy app settings 📁
+  import_tasks: app_settings.yml
+  tags:
+    - app_settings
+
+- name: Copy fonts & projects 🧑‍💻
+  import_tasks: misc.yml
+  tags:
+    - misc

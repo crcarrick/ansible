@@ -1,0 +1,43 @@
+homebrew_casks:
+  - bitwarden
+  - discord
+  - docker
+  - iterm2
+  - kindle
+  - microsoft-edge
+  - obsidian
+  - raycast
+  - slack
+  - spotify
+  - visual-studio-code
+  - zoom
+
+homebrew_formulae:
+  - awscli
+  - bat
+  - bitwarden-cli
+  - caddy
+  - direnv
+  - dockutil
+  - exa
+  - ffmpeg
+  - fzf
+  - git
+  - git-lfs
+  - gh
+  - go
+  - lazydocker
+  - lazygit
+  - lesspipe
+  - mas
+  - mycli
+  - nvm
+  - pgcli
+  - pyenv
+  - redis
+  - sqlite
+  - watchman
+  - yank
+  - zsh-completions
+  - zsh-autosuggestions
+  - zsh-syntax-highlighting

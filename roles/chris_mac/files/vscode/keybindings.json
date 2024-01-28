@@ -1,0 +1,79 @@
+// Place your key bindings in this file to override the defaults
+[
+  {
+    "key": "meta+enter",
+    "command": "explorer.openToSide"
+  },
+  {
+    "key": "shift+meta+up",
+    "command": "cursorUpSelect",
+    "when": "textInputFocus"
+  },
+  {
+    "key": "shift+meta+down",
+    "command": "cursorDownSelect",
+    "when": "textInputFocus"
+  },
+  {
+    "key": "shift+meta+left",
+    "command": "cursorWordPartLeftSelect",
+    "when": "textInputFocus"
+  },
+  {
+    "key": "shift+meta+right",
+    "command": "cursorWordPartRightSelect",
+    "when": "textInputFocus"
+  },
+  {
+    "key": "meta+up",
+    "command": "editor.action.moveLinesUpAction",
+    "when": "textInputFocus"
+  },
+  {
+    "key": "meta+down",
+    "command": "editor.action.moveLinesDownAction",
+    "when": "textInputFocus"
+  },
+  {
+    "key": "shift+right",
+    "command": "editor.action.smartSelect.expand",
+    "when": "textInputFocus"
+  },
+  {
+    "key": "shift+left",
+    "command": "editor.action.smartSelect.shrink",
+    "when": "textInputFocus"
+  },
+  {
+    "key": "shift shift",
+    "command": "workbench.action.quickOpen"
+  },
+  {
+    "key": "meta meta",
+    "command": "workbench.action.showAllSymbols"
+  },
+  {
+    "key": "meta+shift+h",
+    "command": "workbench.action.navigateLeft"
+  },
+  {
+    "key": "meta+shift+l",
+    "command": "workbench.action.navigateRight"
+  },
+  {
+    "key": "meta+shift+j",
+    "command": "workbench.action.previousEditor"
+  },
+  {
+    "key": "meta+shift+k",
+    "command": "workbench.action.nextEditor"
+  },
+  {
+    "key": "meta+shift+c",
+    "command": "workbench.action.closeActiveEditor"
+  },
+  {
+    "key": "cmd+k cmd+o",
+    "command": "workbench.files.action.collapseExplorerFolders"
+  }
+]

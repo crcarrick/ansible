@@ -1,0 +1,118 @@
+- name: Update homebrew
+  homebrew:
+    name: git
+    state: latest
+    update_homebrew: true
+  tags:
+    - homebrew
+
+- name: Install homebrew casks
+  command: brew install {{ homebrew_casks|join(" ") }}
+  tags:
+    - homebrew
+
+- name: Install homebrew formulae
+  homebrew:
+    name: "{{ homebrew_formulae }}"
+    state: latest
+  tags:
+    - homebrew
+
+- name: Install asdf
+  git:
+    repo: git@github.com:asdf-vm/asdf.git
+    dest: "{{ lookup('env', 'HOME') }}/.asdf"
+    key_file: "{{ lookup('env', 'HOME') }}/.ssh/id_rsa"
+    accept_hostkey: yes
+  tags:
+    - asdf
+
+- name: Install asdf plugins
+  shell: |
+    source {{ lookup('env', 'HOME') }}/.asdf/asdf.sh
+    asdf plugin add {{ item }} || exit 0
+  with_items:
+    - nodejs
+    - python
+  tags:
+    - asdf
+
+- name: Setup asdf plugins
+  shell: |
+    source {{ lookup('env', 'HOME') }}/.asdf/asdf.sh
+    asdf install {{ item.name }} {{ item.version }}
+    asdf global {{ item.name }} {{ item.version }}
+    asdf reshim {{ item.name }}
+  with_items:
+    - name: nodejs
+      version: latest
+    - name: python
+      version: 3.10.0
+  tags:
+    - asdf
+
+- name: Install rust
+  shell: |
+    curl https://sh.rustup.rs -sSf | sh -s -- -y
+    rustup toolchain install nightly
+    rustup default nightly
+  tags:
+    - rust
+
+- name: Enable corepack
+  shell: corepack enable
+  tags:
+    - nodejs
+
+- name: Install oh-my-zsh
+  shell: sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+  args:
+    creates: "{{ lookup('env', 'HOME') }}/.oh-my-zsh"
+  tags:
+    - zsh
+
+- name: Install p10k
+  git:
+    repo: git@github.com:romkatv/powerlevel10k.git
+    dest: "{{ lookup('env', 'HOME') }}/.oh-my-zsh/custom/themes/powerlevel10k"
+    key_file: "{{ lookup('env', 'HOME') }}/.ssh/id_rsa"
+    accept_hostkey: yes
+    depth: 1
+  tags:
+    - zsh
+
+- name: Install shell gpt
+  shell: |
+    source {{ lookup('env', 'HOME') }}/.asdf/asdf.sh
+    pip install shell-gpt
+    echo "OPENAI_API_KEY={{ openai_api_key }}" >> {{ lookup('env', 'HOME') }}/.config/shell_gpt/.sgptrc
+    asdf reshim python
+  tags:
+    - ai
+
+- name: Install Copilot CLI
+  shell: |
+    source {{ lookup('env', 'HOME') }}./asdf/asdf.sh
+    pnpm add -g @githubnext/github-copilot-cli
+    asdf reshim nodejs
+  tags:
+    - ai
+
+- name: Authenticate with Github CLIs
+  copy:
+    content: "{{ item.text }}"
+    dest: "{{ lookup('env', 'HOME') }}/{{ item.file }}"
+  with_items:
+    - file: .copilot-cli-access-token
+      text: "{{ copilot_cli_access_token }}"
+    - file: .copilot-cli-copilot-token
+      text: "{{ copilot_cli_copilot_token }}"
+    - file: .config/gh/hosts.yml
+      text: |
+        github.com:
+            oauth_token: {{ github_cli_token }}
+            user: crcarrick
+            git_protocol: ssh
+  tags:
+    - ai
+    - github

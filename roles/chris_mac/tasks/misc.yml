@@ -1,0 +1,38 @@
+- name: Ensure Projects dir exists
+  file:
+    path: "{{ lookup('env', 'HOME') }}/Projects"
+    mode: 0700
+    state: directory
+  tags:
+    - projects
+
+- name: Clone projects
+  git:
+    repo: git@github.com:crcarrick/{{ item }}.git
+    dest: "{{ lookup('env', 'HOME') }}/Projects/{{ item }}"
+    key_file: "{{ lookup('env', 'HOME') }}/.ssh/id_rsa"
+    accept_hostkey: yes
+  with_items:
+    - aoc-kit
+    - color-explode
+    - crcarrick.dev
+    - reawr
+    - reawr-api
+  tags:
+    - projects
+
+- name: Ensure fonts directory
+  file:
+    path: "{{ lookup('env', 'HOME') }}/Library/Fonts"
+    state: directory
+  tags:
+    - fonts
+
+- name: Install fonts
+  git:
+    repo: git@github.com:crcarrick/fonts.git
+    dest: "{{ lookup('env', 'HOME') }}/Library/Fonts"
+    key_file: "{{ lookup('env', 'HOME') }}/.ssh/id_rsa"
+    accept_hostkey: yes
+  tags:
+    - fonts

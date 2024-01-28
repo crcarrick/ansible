@@ -1,0 +1,86 @@
+#!/usr/bin/env zsh
+
+# Close any open System Preferences panes, to prevent them from overriding
+# settings we’re about to change
+osascript -e 'tell application "System Preferences" to quit'
+
+###############################################################################
+# Desktop & Dock                                                              #
+###############################################################################
+
+# Hide recent applications
+defaults write com.apple.dock show-recents -bool false
+# Hot corners 0 (no-op), 2 (mission control), 3 (show application windows), 4 (desktop), 5 (start screen saver), 6 (disable screen saver), 7 (dashboard), 10 (put display to sleep), 11 (launchpad) 12 (notification center) 13 (lock screen)
+# Top right
+defaults write com.apple.dock wvous-tr-corner -int 2
+defaults write com.apple.dock wvous-tr-modifier -int 0
+# Bottom right
+defaults write com.apple.dock wvous-br-corner -int 13
+defaults write com.apple.dock wvous-br-modifier -int 0
+
+###############################################################################
+# Finder                                                                      #
+###############################################################################
+
+# Arrange by kind
+defaults write com.apple.finder FXPreferredGroupBy -string "Kind"
+# Show all filename extensions
+defaults write NSGlobalDomain AppleShowAllExtensions -bool true
+# Show hidden files
+defaults write com.apple.finder AppleShowAllFiles -bool true
+# Allow quitting
+defaults write com.apple.finder QuitMenuItem -bool true
+# Preferred view mode: `Nlsv` (list), `icnv` (icon), `clmv` (column), `glyv` (gallery)
+defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
+
+###############################################################################
+# Keyboard                                                                    #
+###############################################################################
+
+# Disable press-and-hold for keys in favor of key repeat
+defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
+# Set keyboard repeat rate
+defaults write NSGlobalDomain KeyRepeat -int 1
+# Set delay until repeat
+defaults write NSGlobalDomain InitialKeyRepeat -int 15
+# Full keyboard access: `1` (text boxes and lists only), `3` (all controls)
+defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
+# Disable auto-correct
+defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
+# Disable smart quotes
+defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
+# Disable smart dashes
+defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
+# Disable smart punctuation
+defaults write NSGlobalDomain NSAutomaticPeriodSubstitutionEnabled -bool false
+
+###############################################################################
+# Miscellaneous                                                               #
+###############################################################################
+
+# TODO: This is tricky
+# Set default browser to Edge
+# defaults write com.apple.LaunchServices/com.apple.launchservices.secure LSHandlers -array-add '{LSHandlerPreferredVersions=com.microsoft.edgemac;LSHandlerRoleAll=-;LSHandlerURLSchema=http}'
+# defaults write com.apple.LaunchServices/com.apple.launchservices.secure LSHandlers -array-add '{LSHandlerPreferredVersions=com.microsoft.edgemac;LSHandlerRoleAll=-;LSHandlerURLSchema=https}'
+
+###############################################################################
+# Security                                                                    #
+###############################################################################
+
+# Disable the warning before emptying the Trash
+defaults write com.apple.finder WarnOnEmptyTrash -bool false
+# Disable the "Are you sure you want to open this application?" dialog
+defaults write com.apple.LaunchServices LSQuarantine -bool false
+# Require password immediately after sleep or screen saver begins
+defaults write com.apple.screensaver askForPassword -int 1
+defaults write com.apple.screensaver askForPasswordDelay -int 0
+
+###############################################################################
+# Trackpad                                                                    #
+###############################################################################
+
+# Map bottom right corner to right-click
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadCornerSecondaryClick -int 2
+defaults write com.apple.diver.AppleBluetoothMultitouch.trackpad TrackpadRightClick -bool true
+defaults -currentHost write NSGlobalDomain com.apple.trackpad.trackpadCornerClickBehavior -int 1
+defaults -currentHost write NSGlobalDomain com.apple.trackpad.enableSecondaryClick -bool true
