@@ -23,7 +23,8 @@
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
     nvm install --lts
     nvm use --lts
-  creates: "{{ lookup('env', 'HOME') }}/.nvm/nvm.sh"
+  args:
+    creates: "{{ lookup('env', 'HOME') }}/.nvm/nvm.sh"
   tags: nodejs
 
 - name: Install rust
