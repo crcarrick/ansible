@@ -106,7 +106,6 @@
     }
   },
   "githubPullRequests.pullBranch": "never",
-  "python.defaultInterpreterPath": "/Users/christopher.carrick/.pyenv/versions/3.10.9/envs/app",
   "extensions.ignoreRecommendations": true,
   "crcarrick.fsEventCmd": {
     "commands": [

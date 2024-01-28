@@ -3,7 +3,6 @@ homebrew_casks:
   - discord
   - docker
   - iterm2
-  - kindle
   - microsoft-edge
   - obsidian
   - raycast
@@ -19,7 +18,7 @@ homebrew_formulae:
   - caddy
   - direnv
   - dockutil
-  - exa
+  - eza
   - ffmpeg
   - fzf
   - git

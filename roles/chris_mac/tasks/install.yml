@@ -18,38 +18,19 @@
   tags:
     - homebrew
 
-- name: Install asdf
-  git:
-    repo: git@github.com:asdf-vm/asdf.git
-    dest: "{{ lookup('env', 'HOME') }}/.asdf"
-    key_file: "{{ lookup('env', 'HOME') }}/.ssh/id_rsa"
-    accept_hostkey: yes
-  tags:
-    - asdf
-
-- name: Install asdf plugins
+- name: Install node
   shell: |
-    source {{ lookup('env', 'HOME') }}/.asdf/asdf.sh
-    asdf plugin add {{ item }} || exit 0
-  with_items:
-    - nodejs
-    - python
-  tags:
-    - asdf
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+    nvm install --lts
+    nvm use --lts
+  creates: "{{ lookup('env', 'HOME') }}/.nvm/nvm.sh"
+  tags: nodejs
 
-- name: Setup asdf plugins
+- name: Install python
   shell: |
-    source {{ lookup('env', 'HOME') }}/.asdf/asdf.sh
-    asdf install {{ item.name }} {{ item.version }}
-    asdf global {{ item.name }} {{ item.version }}
-    asdf reshim {{ item.name }}
-  with_items:
-    - name: nodejs
-      version: latest
-    - name: python
-      version: 3.10.0
-  tags:
-    - asdf
+    pyenv install 3.11.3
+    pyenv global 3.11.3
+  tags: python
 
 - name: Install rust
   shell: |
@@ -80,15 +61,6 @@
     depth: 1
   tags:
     - zsh
-
-- name: Install shell gpt
-  shell: |
-    source {{ lookup('env', 'HOME') }}/.asdf/asdf.sh
-    pip install shell-gpt
-    echo "OPENAI_API_KEY={{ openai_api_key }}" >> {{ lookup('env', 'HOME') }}/.config/shell_gpt/.sgptrc
-    asdf reshim python
-  tags:
-    - ai
 
 - name: Install Copilot CLI
   shell: |
