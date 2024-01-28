@@ -8,8 +8,8 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 echo "Setting up python..."
 
 brew install pyenv
-pyenv install 3.11.2
-pyenv global 3.11.2
+pyenv install 3.11.3
+pyenv global 3.11.3
 python -m venv venv
 source venv/bin/activate
 

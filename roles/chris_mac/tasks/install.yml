@@ -26,12 +26,6 @@
   creates: "{{ lookup('env', 'HOME') }}/.nvm/nvm.sh"
   tags: nodejs
 
-- name: Install python
-  shell: |
-    pyenv install 3.11.3
-    pyenv global 3.11.3
-  tags: python
-
 - name: Install rust
   shell: |
     curl https://sh.rustup.rs -sSf | sh -s -- -y
